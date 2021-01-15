@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>810</width>
+    <height>410</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>810</width>
+    <height>410</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 201, 223);</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1">
+    <widget class="QTableWidget" name="Tabla_DatosDon2">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(245, 245, 245);</string>
+     </property>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>100</number>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>300</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>30</number>
+     </attribute>
+     <row>
+      <property name="text">
+       <string>Hierro en Sangre</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Anemia</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Hemoglobina</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Hepatitis B</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Hepatitis C</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>SIDA</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Sífilis</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>HTLV-I-II</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Chagas</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Otros</string>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>EXÁMENES / ENFERMEDADES</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;LOS DATOS REGISTRADOS DEL DONANTE SON LOS SIGUIENTES&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTableWidget" name="Tabla_DatosDon">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(245, 245, 245);</string>
+     </property>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>100</number>
+     </attribute>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>300</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>30</number>
+     </attribute>
+     <row>
+      <property name="text">
+       <string>Nombres</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Apellidos</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Genero</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Cédula</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Tel/Cel</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Peso</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Grupo Sanguineo</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Edad</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Correo</string>
+      </property>
+     </row>
+     <row>
+      <property name="text">
+       <string>Ciudad</string>
+      </property>
+     </row>
+     <column>
+      <property name="text">
+       <string>INFORMACIÓN PACIENTE</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QPushButton" name="Boton_Volver">
+     <property name="minimumSize">
+      <size>
+       <width>35</width>
+       <height>35</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(241, 241, 241);</string>
+     </property>
+     <property name="text">
+      <string>VOLVER</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <layout class="QHBoxLayout" name="horizontalLayout"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
