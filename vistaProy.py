@@ -1023,6 +1023,7 @@ class VentanaIngresoPac(QDialog):
             return self.__genero
         elif self.radioButton_Femenino.isChecked():
             self.__genero = "Femenino"
+            return self.__genero
                     
     def GuardarSangre(self):  #En esta opción se guardará cual de las opciones presionó el usuario y se retornara la respectiva
         if self.radioButton_APos.isChecked():
@@ -1529,22 +1530,55 @@ class BuscarUnDonante(QDialog):
         self.__ventana_principal=ppal
         self.setup()
     def setup(self):
-        self.BotonOkCancel.accepted.connect(self.confirmaBuscarDonante)
+        self.BotonOkCancel.accepted.connect(self.confirmarBuscarDonante)
         self.BotonOkCancel.rejected.connect(self.Volver)
 
     def asignarControlador(self,c):
         self.__mi_controlador = c
-        
-    def confirmaBuscarDonante(self):
-         #verificar
-        VerDon = VentanaPaciente(self)
-        VerDon.asignarControlador(self.__mi_controlador)
-        VerDon.show()
-        self.hide() 
-                
+    
+    def confirmarBuscarDonante(self):
+        nueva_ident = int(self.InputCedula.text())
+        verificar=self.__mi_controlador.verificarIdPac(nueva_ident)
+        if verificar==True:
+            c=self.__mi_controlador.filtradoDonante(nueva_ident)
+            if c > 0:
+                msgBox = QMessageBox(self)
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle('Buscar Donante')
+                mensaje=("Hay "+str(c)+ "Donantes disponibles para transfusión de sangre")
+                msgBox.setText(mensaje)
+                msgBox.show()
+                ventanaPac = VentanaPaciente(self)
+                ventanaPac.asignarControlador(self.__mi_controlador)
+                ventanaPac.show()
+                self.hide()
+            else:
+                msgBox = QMessageBox(self)
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle('Buscar Donante')
+                mensaje=("Lo siento, en estos momentos no hay donantes disponibles")
+                msgBox.setText(mensaje)
+                msgBox.show()
+                ventanaPac = VentanaPaciente(self)
+                ventanaPac.asignarControlador(self.__mi_controlador)
+                ventanaPac.show()
+                self.hide()
+        else:
+            msgBox = QMessageBox(self)
+            msgBox.setIcon(QMessageBox.Warning)
+            msgBox.setWindowTitle('Buscar Donante')
+            msgBox.setText("La identifiación de paciente "+ str(c)+" que ingresó no existe.\n\n           Inténtelo de nuevo.")
+            msgBox.show()
+            ventanaPac = VentanaPaciente(self)
+            ventanaPac.asignarControlador(self.__mi_controlador)
+            ventanaPac.show()
+            self.hide()
+    
     def Volver(self):
-        self.__ventana_principal.show()
-        self.hide()
+        ventanaPac = VentanaPaciente(self)
+        ventanaPac.asignarControlador(self.__mi_controlador)
+        ventanaPac.show()   
+        self.hide() 
 ############################MENÚ PRINCIPAL 3 (VISUALIZAR GRÁFICAS DE LOS DATOS ACTUALES DEL SISTEMA)############################################################
 class VentanaDatosEstadisticos(QDialog):
     def __init__(self,ppal=None):

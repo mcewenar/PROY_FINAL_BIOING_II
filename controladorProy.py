@@ -49,7 +49,9 @@ class Coordinador:
     def Regresar_Paciente(self,cc):
         Paciente_Receptor = self.__modelo.Regresar_Paciente(cc)
         return Paciente_Receptor
-
+    def filtradoDonante(self,num):
+        return self.__modelo.NumAptoDonante(num)
+        
 
 def main():
     app = QApplication(sys.argv)

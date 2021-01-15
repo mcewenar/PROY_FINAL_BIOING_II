@@ -309,23 +309,20 @@ class Sistema():
      
     
     
-    def filtroDonante(self):
+    def filtroDonante(self,c=0):
+        for CCdonante in self.__dicc_Donantes.keys():
             p=Examenes()
             d=Donante()
-            c=0
-            if (p.verHemoglobina() >= 13.3 or p.verHemoglobina() <= 16.6) and p.verValorHepatitisB() !=True and p.verValorHepatitisC() != True and p.verAnemia() != True and p.verValorHTLV() != True and p.verValorSIDA() != True and p.asignarOtrasEnfermedades() !=True (d.verEdad() >= 18 or d.verEdad() <= 65):
+            if (p.verHemoglobina() >= 13.3 or p.verHemoglobina() <= 16.6) and p.verValorHepatitisB() !=True and p.verValorHepatitisC() != True and p.verValorChagas() != True and p.verAnemia() != True and p.verValorHTLV() != True and p.verValorSIDA() != True and p.verValorSifilis() != True and p.verOtrasEnfer() !=True and p.verTextoOtrasEnfer() == None and (d.verEdad() >= 18 or d.verEdad() <= 65) and d.verPeso() > 50:
                 c=c+1
                 return c
-                                   
             else:
-                return False
-        
+                return 0
         
     
+    
     def NumAptoDonante(self,CCdonante):
-        for CCdonante in self.__dicc_Donantes:
-            if CCdonante.verificarIdDonante() == True:
-                hemoglo=self.filtroDonante()
-                return hemoglo
-            else:
-                return False
+        #for CCdonante in self.__dicc_Donantes:
+            hemoglo=self.filtroDonante()
+            return hemoglo
+            
