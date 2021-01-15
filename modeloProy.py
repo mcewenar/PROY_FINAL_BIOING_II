@@ -79,6 +79,7 @@ class Examenes():
         self.__HTLV = False       #I-II
         self.__Chagas = False
         self.__OtrasEnfermedades = "N/A"
+        self.__TextoOtrasEnfermedades = "N/A"
 
 
     def asignarHierro(self,h):
@@ -102,6 +103,8 @@ class Examenes():
         self.__Chagas = vch
     def asignarOtrasEnfermedades(self , oe):
         self.__OtrasEnfermedades = oe
+    def asignarTextoOtrasEnfermedades(self , oe):
+        self.__TextoOtrasEnfermedades = oe
     
 
 
@@ -127,6 +130,8 @@ class Examenes():
         return self.__HTLV
     def verOtrasEnfer(self):
         return self.__OtrasEnfermedades
+    def verTextoOtrasEnfer(self):
+        return self.__TextoOtrasEnfermedades
           
 class Sistema():
     def __init__(self):
@@ -136,7 +141,7 @@ class Sistema():
 
 ##############################DONANTES########################################   
 
-    def ingresarDonante(self,nom_don,apellido_don,ident,tel_don,edad_don,peso_don,sangre,genero,ciudad,correo,Hemoglobina,hierroS,anemia,hepaC,hepaB,sida,htlv,otrasEnf,chagas,sifilis):
+    def ingresarDonante(self,nom_don,apellido_don,ident,tel_don,edad_don,peso_don,sangre,genero,ciudad,correo,Hemoglobina,hierroS,anemia,hepaC,hepaB,sida,htlv,otrasEnf,chagas,sifilis,TextoOtrasEnf):
         
         resultado=self.verificarIdDonante(ident)        
         if resultado==True:
@@ -165,23 +170,25 @@ class Sistema():
             ex.asignarValorChagas(chagas)
             ex.asignarOtrasEnfermedades(otrasEnf)
             ex.asignarValorSifilis(sifilis)
+            ex.asignarTextoOtrasEnfermedades(TextoOtrasEnf)
             
             Don.asignarExamenes(ex)
             self.__dicc_Donantes[ident]=Don
         
             return True
 
-    def editadoDonante(self,nom,apellido,genero,ident,nueva_ident,edad,peso,tel,tipo_sangre,mail,ciudad,hierro,Anemia,hemoglo,sifilis,hepatitisB,hepatitisC,sida,htlv,chagas,otrasEnfer):
+    def editadoDonante(self,nom,apellido,genero,ident,nueva_ident,edad,peso,tel,tipo_sangre,mail,ciudad,hierro,Anemia,hemoglo,sifilis,hepatitisB,hepatitisC,sida,htlv,chagas,otrasEnfer,TextoOtrasEnf):
         resultado=self.verificarIdDonante(ident)
         
         if resultado==False:
             return False
 
         else:
-            self.CambiarCedulaDon(ident,nueva_ident)
+            self.CambiarCedulDon(ident,nueva_ident)
 
-            don=self.__dicc_Donantes[nueva_ident]
+            don = Donante()
             
+            don.asignarCedula(nueva_ident)
             don.asignarNombre(nom)
             don.asignarApellido(apellido)
             don.asignarGenero(genero)
@@ -203,18 +210,20 @@ class Sistema():
             ex.asignarValorHTLV(htlv)
             ex.asignarValorChagas(chagas)
             ex.asignarOtrasEnfermedades(otrasEnfer)
+            ex.asignarTextoOtrasEnfermedades(TextoOtrasEnf)
+            
             
             don.asignarExamenes(ex)            
-            self.__dicc_Donantes[ident]=don            
+            self.__dicc_Donantes[nueva_ident] = don            
           
             return True
 
-    def verificarIdDonante(self,CCpaciente):
-        resultado=CCpaciente in self.__dicc_Donantes.keys()
+    def verificarIdDonante(self,CC):
+        resultado=CC in self.__dicc_Donantes.keys()
         return resultado
 
-    def CambiarCedulaDon(self,cc,ncc):
-        self.__dicc_Donantes[ncc] = self.__Dic_Pacientes.pop(cc)
+    def CambiarCedulDon(self,cc,ncc):
+        self.__dicc_Donantes[ncc] = self.__dicc_Donantes.pop(cc)
     
     def eliminarDonante(self,id):
         del self.__dicc_Donantes[id]  
@@ -255,7 +264,7 @@ class Sistema():
             self.__dicc_receptores[cc]=Pac             
             return True         
     def editadoPaciente(self,nom,apellido,genero,ident,nueva_ident,edad,peso,tel,tipo_sangre,mail,ciudad):
-        resultado=self.verificarIdDonante(ident)
+        resultado=self.verificarIdReceptor(ident)
         
         if resultado==False:
             return False
@@ -263,25 +272,23 @@ class Sistema():
         else:
             self.CambiarCedulaPac(ident,nueva_ident)
 
-            don=self.__dicc_receptores[nueva_ident]
-            
-            don.asignarNombre(nom)
-            don.asignarApellido(apellido)
-            don.asignarGenero(genero)
-            don.asignarEdad(edad)
-            don.asignarPeso(peso)
-            don.asignarTipoSangre(tipo_sangre)
-            don.asignarTel(tel)
-            don.asignarCorreo(mail)
-            don.asignarCiudad(ciudad)
-            
-            
-            #don.asignarExamenes(ex)            
-            self.__dicc_Donantes[ident]=don            
-          
+            Pac = Receptor()
+            Pac.asignarCedula(nueva_ident)
+            Pac.asignarNombre(nom)
+            Pac.asignarApellido(apellido)
+            Pac.asignarGenero(genero)
+            Pac.asignarEdad(edad)
+            Pac.asignarPeso(peso)
+            Pac.asignarTipoSangre(tipo_sangre)
+            Pac.asignarTel(tel)
+            Pac.asignarCorreo(mail)
+            Pac.asignarCiudad(ciudad)                        
+                       
+            self.__dicc_receptores[nueva_ident] = Pac
             return True
     def CambiarCedulaPac(self,cc,ncc):
-        self.__dicc_Donantes[ncc] = self.__Dic_Pacientes.pop(cc)
+        self.__dicc_receptores[ncc] = self.__dicc_receptores.pop(cc)
+
     def eliminarPaciente(self,id):
             del self.__dicc_receptores[id]
         
@@ -301,11 +308,12 @@ class Sistema():
         return resultado
      
     
+    
     def filtroDonante(self):
             p=Examenes()
             d=Donante()
             c=0
-            if (p.verHemoglobina() >= 13.3 or p.verHemoglobina() <= 16.6) and p.verValorHepatitisB() !=True and p.verValorHepatitisC() != True and p.verAnemia() != True and (d.verEdad() >= 18 or d.verEdad() <= 65) and p.asignarOtrasEnfermedades() !=True:
+            if (p.verHemoglobina() >= 13.3 or p.verHemoglobina() <= 16.6) and p.verValorHepatitisB() !=True and p.verValorHepatitisC() != True and p.verAnemia() != True and p.verValorHTLV() != True and p.verValorSIDA() != True and p.asignarOtrasEnfermedades() !=True (d.verEdad() >= 18 or d.verEdad() <= 65):
                 c=c+1
                 return c
                                    
@@ -315,14 +323,9 @@ class Sistema():
         
     
     def NumAptoDonante(self,CCdonante):
-        resultado=CCdonante in self.__dicc_Donantes.keys()
-        if resultado == True:
-            hemoglo=self.filtroDonante()
-            return hemoglo
-        else:
-            return False
-    
-    
-        
-    
-        
+        for CCdonante in self.__dicc_Donantes:
+            if CCdonante.verificarIdDonante() == True:
+                hemoglo=self.filtroDonante()
+                return hemoglo
+            else:
+                return False

@@ -118,6 +118,7 @@ class AbrirNuevoDonante(QDialog):
         self.__HepatitisC= False
         self.__Sida= False
         self.__OtrasEnfermedades= False
+        self.__TextOtrasEnfermedades = "N/A"
         self.__Chagas= False
         self.__Anemia = False
         self.__Sifilis = False
@@ -178,7 +179,8 @@ class AbrirNuevoDonante(QDialog):
             self.__Chagas = True
 
         if self.radioButton_Otras_Enf.isChecked():
-            self.__OtrasEnfermedades = True
+            self.__OtrasEnfermedades = True    
+            self.__TextOtrasEnfermedades = self.lineEdit_Otras_Enf.text()                   
             
         if self.radioButton_Anemia.isChecked():
             self.__Anemia = True
@@ -286,18 +288,17 @@ class AbrirNuevoDonante(QDialog):
             msgBox.setText('El campo Peso de Donante no puede estar vacio ni ser cero')
             msgBox.show()
             return
-            
+        self.__TextOtrasEnfermedades   = self.lineEdit_Otras_Enf.text()    
         nom_don=self.lineEdit_Nombres.text()
         apellido_don=self.lineEdit_Apellidos.text()
         correo=self.lineEdit_Correo.text()
         ciudad=self.lineEdit_Ciudad.text()
-        otras_enferText=self.lineEdit_Otras_Enf.text()        
+               
         
         verif_nombre=nom_don.strip()
         verif_apellido=apellido_don.strip()
         verif_correo=correo.strip()
-        verif_ciudad=ciudad.strip()
-        verif_otrasEnfermedades=otras_enferText.strip()
+        verif_ciudad=ciudad.strip()        
         verif_gen_mas=self.GuardarGenero()
         verif_tipo=self.GuardarSangre()
     
@@ -312,11 +313,7 @@ class AbrirNuevoDonante(QDialog):
             msgBox.setWindowTitle("¡Alerta!")
             msgBox.setText('Debe oprimir género de donante')
             msgBox.show()
-        elif verif_otrasEnfermedades == None:
-            msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('Debe oprimir género de donante')
-            msgBox.show()
+        
         elif verif_tipo == None:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
@@ -376,11 +373,12 @@ class AbrirNuevoDonante(QDialog):
             hepaC=self.__HepatitisC
             sida=self.__Sida
             otrasEnf=self.__OtrasEnfermedades
+            TextoOtrasEnf = self.__TextOtrasEnfermedades            
             chagas=self.__Chagas
             anemia=self.__Anemia
             sifilis = self.__Sifilis
 
-            ingreso_donante=self.__mi_controlador.recibirDonante(nom_don,apellido_don,nueva_ident,tel_don,edad_don,peso_don,sangre,genero,ciudad,correo,Hemoglobina,hierroS,anemia,hepaC,hepaB,sida,htlv,otrasEnf,chagas,sifilis)
+            ingreso_donante=self.__mi_controlador.recibirDonante(nom_don,apellido_don,nueva_ident,tel_don,edad_don,peso_don,sangre,genero,ciudad,correo,Hemoglobina,hierroS,anemia,hepaC,hepaB,sida,htlv,otrasEnf,chagas,sifilis,TextoOtrasEnf)
             if ingreso_donante==True:
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('¡Alerta!')
@@ -421,7 +419,8 @@ class VerificacionVerDonante(QDialog):
     def confirmarVerDonante(self):
         
         cedula = int(self.InputCedula.text())
-        if cedula==True:
+        verificacion = self.__mi_controlador.verificarIdDon(cedula)
+        if verificacion == True:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Information)
             msgBox.setWindowTitle('Ver Donante')
@@ -434,10 +433,8 @@ class VerificacionVerDonante(QDialog):
             VerDon.Tabular_Información(cedula)
             VerDon.show()
             self.hide() 
-            
-            
-                
-        else:
+                            
+        elif verificacion == False:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Ver Donante')
@@ -501,6 +498,8 @@ class VentanaVerDonante(QDialog):
             Chagas = Examenes.verValorChagas()
             HTLV = Examenes.verValorHTLV()
             OtrasEnf =  Examenes.verOtrasEnfer()
+            TextoOtrasEnf = Examenes.verTextoOtrasEnfer()
+            TotalOtrasEnf = (str(OtrasEnf) + " : " +str(TextoOtrasEnf))
 
             celdaNomb = QTableWidgetItem(str(Nom))
             celdaApe = QTableWidgetItem(str(Ape))
@@ -522,7 +521,7 @@ class VentanaVerDonante(QDialog):
             celdaSIDA = QTableWidgetItem(str(SIDA))
             celdaChagas = QTableWidgetItem(str(Chagas))
             celdaHTLV = QTableWidgetItem(str(HTLV))
-            celdaOtrasEnf = QTableWidgetItem(str(OtrasEnf))
+            celdaOtrasEnf = QTableWidgetItem(str(TotalOtrasEnf))
 
             self.Tabla_DatosDon.setItem(-1,1,celdaNomb)
             self.Tabla_DatosDon.setItem(0,1,celdaApe) 
@@ -566,17 +565,17 @@ class VerificarEditarDonante(QDialog):
         self.__mi_controlador = c
     def ConfirmarActualizarDon(self):
         
-        nueva_ident = int(self.InputCedula.text())
-        verificar=self.__mi_controlador.verificarIdDon(nueva_ident)
+        ident = int(self.InputCedula.text())
+        verificar=self.__mi_controlador.verificarIdDon(ident)
         if verificar==True:
                 msgBox = QMessageBox(self)
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('Editar Donante')
-                mensaje=("Donante con identificación "+str(nueva_ident))
+                mensaje=("Donante con identificación "+str(ident))
                 msgBox.setText(mensaje)
                 msgBox.show()                
                 ActualDon = EditarDonante(self)
-                ActualDon.AsignarCedula_Verificacion(nueva_ident)
+                ActualDon.AsignarCedula_Verificacion(ident)
                 ActualDon.asignarControlador(self.__mi_controlador)
                 ActualDon.show()
                 self.hide()
@@ -585,7 +584,7 @@ class VerificarEditarDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Editar Donante')
-            msgBox.setText('El donante con identificacion '+str(nueva_ident)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El donante con identificacion '+str(ident)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaMenDon = VentanaDonante(self)
             ventanaMenDon.asignarControlador(self.__mi_controlador)
@@ -609,6 +608,7 @@ class EditarDonante(QDialog):
         self.__HepatitisC= False
         self.__Sida= False
         self.__OtrasEnfermedades= False
+        self.__TextOtrasEnfermedades = "N/A"
         self.__Chagas= False
         self.__Anemia = False
         self.__Sifilis = False
@@ -618,7 +618,7 @@ class EditarDonante(QDialog):
         self.Boton_Confirmar.clicked.connect(self.ConfirmarIngreso)
         self.Boton_Volver.clicked.connect(self.Volver)
         self.lineEdit_nombre.setValidator(validator)
-        self.lineEdit_cedula.setValidator(QIntValidator())
+        self.cedulaDonante.setValidator(QIntValidator())
         self.lineEdit_apellido.setValidator(validator)
         self.lineEdit_edad.setValidator(QIntValidator(1,150))
         self.lineEdit_ciudad.setValidator(validator)
@@ -649,6 +649,7 @@ class EditarDonante(QDialog):
         self.radioButton_Chagas.toggled.connect(self.GuardarEnfermedad)       
         self.radioButton_Otras_Enf.toggled.connect(self.GuardarEnfermedad)
         self.radioButton_anemia.toggled.connect(self.GuardarEnfermedad)
+        
     
     def AsignarCedula_Verificacion(self,id):
         self.__Cedula_verificación = id
@@ -700,6 +701,7 @@ class EditarDonante(QDialog):
             
         if self.radioButton_Otras_Enf.isChecked():
             self.__OtrasEnfermedades = True
+            self.__TextOtrasEnfermedades = self.lineEdit_OtraEnfer.text()
             
         if self.radioButton_anemia.isChecked():
             self.__Anemia = True
@@ -737,7 +739,7 @@ class EditarDonante(QDialog):
         
         nueva_ident =""
         try:
-            nueva_ident = int(self.lineEdit_cedula.text())
+            nueva_ident = int(self.cedulaDonante.text())
         except:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
@@ -779,7 +781,7 @@ class EditarDonante(QDialog):
             msgBox.setText('El campo Peso de Donante no puede estar vacio ni ser cero')
             msgBox.show()
             return
-            
+        self.__TextOtrasEnfermedades=self.lineEdit_OtraEnfer.text()    
         nom_don=self.lineEdit_nombre.text()
         apellido_don=self.lineEdit_apellido.text()
         correo=self.lineEdit_correo.text()
@@ -851,20 +853,27 @@ class EditarDonante(QDialog):
             sida=self.__Sida
             sifilis = self.__Sifilis
             otrasEnf=self.__OtrasEnfermedades
+            TextOtrasEnf = self.__TextOtrasEnfermedades
             chagas=self.__Chagas
             anemia=self.__Anemia            
             ident = self.__Cedula_verificación
 
-            self.__mi_controlador.ingresoEditarDonante(nom_don,apellido_don,genero,ident,nueva_ident,edad_don,peso_don,tel_don,sangre,ciudad,hierroS,anemia,Hemoglobina,sifilis,hepaB,hepaC,sida,htlv,chagas,otrasEnf )
-                                                        
-            msgBox.setIcon(QMessageBox.Information)
-            msgBox.setWindowTitle('¡Alerta!')
-            msgBox.setText('Donante editado con exito')     
-            msgBox.show()  
+            edicion = self.__mi_controlador.ingresoEditarDonante(nom_don,apellido_don,genero,ident,nueva_ident,edad_don,peso_don,tel_don,sangre,correo,ciudad,hierroS,anemia,Hemoglobina,sifilis,hepaB,hepaC,sida,htlv,chagas,otrasEnf,TextOtrasEnf )
+
+            if edicion == True:
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle('¡Alerta!')
+                msgBox.setText('Donante editado con exito')     
+                msgBox.show()  
+            elif edicion == False:                                                
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle('¡Alerta!')
+                msgBox.setText('Ha Habido un ERROR')     
+                msgBox.show()  
             ventanaMenDon = VentanaDonante(self)
             ventanaMenDon.asignarControlador(self.__mi_controlador)            
             ventanaMenDon.show()
-            # self.hide()
+            self.hide()
     def asignarControlador(self,c):
         self.__mi_controlador = c
     
@@ -1086,14 +1095,9 @@ class VentanaIngresoPac(QDialog):
             msgBox.setIcon(QMessageBox.Information)
             msgBox.setWindowTitle('¡Alerta!')
             msgBox.setText("Paciente con identificación " +str(CedulaPac)+ " ingresado con exito")     
-            msgBox.show()
-            
-                                            
-            ventanaMenPac = VentanaPaciente(self)
-            ventanaMenPac.asignarControlador(self.__mi_controlador)
-            self.hide()
-            ventanaMenPac.show()  
-            #self.Volver_Menu()    
+            msgBox.show() 
+            self.Volver_Menu()
+            self.hide()     
     
     def Volver_Menu(self):
         self.__mi_ventana_principal.show()
@@ -1122,7 +1126,8 @@ class VerificarPaciente_Ver(QDialog):
     def Ingresar_VerPac(self):
         
         cc = int(self.InputCedula.text())
-        if cc==True:
+        verificacion = self.__mi_controlador.verificarIdPac(cc)
+        if verificacion == True:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Information)
             msgBox.setWindowTitle('Ver Paciente')
@@ -1138,11 +1143,11 @@ class VerificarPaciente_Ver(QDialog):
             self.hide()
             
                 
-        else:
+        elif verificacion == False:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle('Ver Donante')
-            msgBox.setText('El donante con identificacion '+str(cc)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setWindowTitle('Ver PACIENTE')
+            msgBox.setText('El PACIENTE con identificacion '+str(cc)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)
@@ -1235,16 +1240,17 @@ class VerificarPaciente_Editar(QDialog):
         self.BotonOkCancel.rejected.connect(self.Volver)
 
     def ConfirmarEditarPac(self):
-        nueva_ident = int(self.InputCedula.text())
-        verificar=self.__mi_controlador.verificarIdPac(nueva_ident)
+        ident = int(self.InputCedula.text())
+        verificar=self.__mi_controlador.verificarIdPac(ident)
         if verificar==True:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Information)
-            msgBox.setWindowTitle('Editar Donante')
-            mensaje=("Donante con identificación "+str(nueva_ident))
+            msgBox.setWindowTitle('Editar DPaciente')
+            mensaje=("Paciente con identificación "+str(ident))
             msgBox.setText(mensaje)
             msgBox.show()                
             VentEdit = EditarPaciente(self)
+            VentEdit.AsignarCedula_Verificacion(ident)
             VentEdit.asignarControlador(self.__mi_controlador)
             VentEdit.show()
             self.hide()
@@ -1253,7 +1259,7 @@ class VerificarPaciente_Editar(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Editar Paciente')
-            msgBox.setText('El donante con identificacion '+str(nueva_ident)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El Paciente con identificacion '+str(ident)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)
@@ -1279,16 +1285,16 @@ class EditarPaciente(QDialog):
 
         self.__Cedula_verificación = 0
     def setup(self):
-        self.aceptar_paciente.clicked.connect(self.ConfirmarIngreso)
+        self.Boton_Aceptar.clicked.connect(self.ConfirmarIngreso)
         self.volver_paciente.clicked.connect(self.Volver)
-        self.nombrepac.setValidator(validator)
-        self.apellidopac.setValidator(validator)
-        self.edadPac.setValidator(QIntValidator(1,150))
-        self.ciudadpac.setValidator(validator)
-        self.telpac.setValidator(QIntValidator())
-        self.correopac.text()
-        self.NUEVACEL.setValidator(QIntValidator())
-        self.pesopac.setValidator(QIntValidator(1,1000))
+        self.Boton_NombrePac.setValidator(validator)
+        self.Boton_Apell.setValidator(validator)
+        self.Boton_Edad.setValidator(QIntValidator(1,150))
+        self.Boton_Ciudad.setValidator(validator)
+        self.Boton_Tel.setValidator(QIntValidator())
+        self.Boton_Correo.text()
+        self.Boton_NuevaCed.setValidator(QIntValidator())
+        self.Boton_Peso.setValidator(QIntValidator(1,1000))
         #genero
         self.masculino.toggled.connect(self.GuardarGenero)
         self.femenino.toggled.connect(self.GuardarGenero)        
@@ -1331,9 +1337,7 @@ class EditarPaciente(QDialog):
         elif self.ONEG.isChecked():
             self.__tipoSangre = "O-"
             return self.__tipoSangre
-
-    
-        
+  
     def GuardarGenero(self):
         if self.masculino.isChecked():
             self.__genero = "Masculino"
@@ -1346,7 +1350,7 @@ class EditarPaciente(QDialog):
         
         nueva_ident =""
         try:
-            nueva_ident = int(self.NUEVACEL.text())
+            nueva_ident = int(self.Boton_NuevaCed.text())
         except:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
@@ -1358,7 +1362,7 @@ class EditarPaciente(QDialog):
         tel_don=""
         try:
             
-            tel_don = int(self.telpac.text())
+            tel_don = int(self.Boton_Tel.text())
         except:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
@@ -1369,7 +1373,7 @@ class EditarPaciente(QDialog):
         
         edad_don = ""
         try:
-            edad_don = int(self.edadPac.text())
+            edad_don = int(self.Boton_Edad.text())
         except:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
@@ -1380,7 +1384,7 @@ class EditarPaciente(QDialog):
         
         peso_don= ""
         try:
-            peso_don = int(self.pesopac.text())
+            peso_don = int(self.Boton_Peso.text())
         except:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
@@ -1389,10 +1393,10 @@ class EditarPaciente(QDialog):
             msgBox.show()
             return
             
-        nom_don=self.nombrepac.text()
-        apellido_don=self.apellidopac.text()
-        correo=self.correopac.text()
-        ciudad=self.ciudadpac.text()
+        nom_don=self.Boton_NombrePac.text()
+        apellido_don=self.Boton_Apell.text()
+        correo=self.Boton_Correo.text()
+        ciudad=self.Boton_Ciudad.text()
         
         verif_nombre=nom_don.strip()
         verif_apellido=apellido_don.strip()
@@ -1446,15 +1450,24 @@ class EditarPaciente(QDialog):
             genero=self.GuardarGenero()
             ident = self.__Cedula_verificación
 
-            self.__mi_controlador.ingresoEditarPaciente(nom_don,apellido_don,genero,ident,nueva_ident,edad_don,peso_don,tel_don,sangre,correo,ciudad)                                                        
-            msgBox.setIcon(QMessageBox.Information)
-            msgBox.setWindowTitle('¡Alerta!')
-            msgBox.setText('Donante editado con exito')     
-            msgBox.show()  
+            edicion = self.__mi_controlador.ingresoEditarPaciente(nom_don,apellido_don,genero,ident,nueva_ident,edad_don,peso_don,tel_don,sangre,correo,ciudad)                                                        
+            if edicion == True:
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle('¡Alerta!')
+                msgBox.setText('Paciente editado con exito')     
+                msgBox.show()  
+                
+            elif edicion == False:
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle('¡Alerta!')
+                msgBox.setText('Ha Habido un ERROR')     
+                msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)            
             ventanaPac.show()
-            self.hide()
+            self.hide()    
+
+            
     def asignarControlador(self,c):
         self.__mi_controlador = c
         

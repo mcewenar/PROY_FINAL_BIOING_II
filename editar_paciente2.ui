@@ -28,7 +28,7 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(208, 199, 255);</string>
   </property>
-  <widget class="QLineEdit" name="nombrepac">
+  <widget class="QLineEdit" name="Boton_NombrePac">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -41,11 +41,11 @@
     <string notr="true">background-color: rgb(249, 249, 249);</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="apellidopac">
+  <widget class="QLineEdit" name="Boton_Apell">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>130</y>
+     <y>90</y>
      <width>261</width>
      <height>21</height>
     </rect>
@@ -54,7 +54,7 @@
     <string notr="true">background-color: rgb(249, 249, 249);</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="telpac">
+  <widget class="QLineEdit" name="Boton_Tel">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -67,7 +67,7 @@
     <string notr="true">background-color: rgb(249, 249, 249);</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="pesopac">
+  <widget class="QLineEdit" name="Boton_Peso">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -80,7 +80,7 @@
     <string notr="true">background-color: rgb(249, 249, 249);</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="correopac">
+  <widget class="QLineEdit" name="Boton_Correo">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -93,7 +93,7 @@
     <string notr="true">background-color: rgb(249, 249, 249);</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="ciudadpac">
+  <widget class="QLineEdit" name="Boton_Ciudad">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -123,7 +123,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>130</y>
+     <y>90</y>
      <width>121</width>
      <height>16</height>
     </rect>
@@ -314,14 +314,23 @@
     <string>B-</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="aceptar_paciente">
+  <widget class="QPushButton" name="Boton_Aceptar">
    <property name="geometry">
     <rect>
      <x>510</x>
      <y>350</y>
-     <width>75</width>
-     <height>23</height>
+     <width>100</width>
+     <height>40</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 230, 213);</string>
    </property>
    <property name="text">
     <string>Aceptar</string>
@@ -332,9 +341,18 @@
     <rect>
      <x>630</x>
      <y>350</y>
-     <width>75</width>
-     <height>23</height>
+     <width>100</width>
+     <height>40</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 230, 213);</string>
    </property>
    <property name="text">
     <string>Volver</string>
@@ -379,7 +397,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QLineEdit" name="edadPac">
+  <widget class="QLineEdit" name="Boton_Edad">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -387,6 +405,9 @@
      <width>261</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_10">
@@ -406,7 +427,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>90</y>
+     <y>130</y>
      <width>101</width>
      <height>16</height>
     </rect>
@@ -415,14 +436,17 @@
     <string>EDITAR CÉDULA:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="NUEVACEL">
+  <widget class="QLineEdit" name="Boton_NuevaCed">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>90</y>
+     <y>130</y>
      <width>261</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
  </widget>
