@@ -41,12 +41,12 @@
     <rect>
      <x>10</x>
      <y>40</y>
-     <width>101</width>
+     <width>111</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>EDITAR NOMBRE:</string>
+    <string>EDITAR NOMBRE(S):</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -85,7 +85,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>EDITAR APELLIDO:</string>
+    <string>EDITAR APELLIDOS:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -775,7 +775,7 @@
     <rect>
      <x>10</x>
      <y>80</y>
-     <width>91</width>
+     <width>101</width>
      <height>16</height>
     </rect>
    </property>

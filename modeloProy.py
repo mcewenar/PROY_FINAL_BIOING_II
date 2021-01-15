@@ -306,14 +306,13 @@ class Sistema():
     def verificarIdReceptor(self,CCpaciente):
         resultado=CCpaciente in self.__dicc_receptores.keys()
         return resultado
-     
-    
+####################################################
     
     def filtroDonante(self,c=0):
         for CCdonante in self.__dicc_Donantes.keys():
             p=Examenes()
             d=Donante()
-            if (p.verHemoglobina() >= 13.3 or p.verHemoglobina() <= 16.6) and p.verValorHepatitisB() !=True and p.verValorHepatitisC() != True and p.verValorChagas() != True and p.verAnemia() != True and p.verValorHTLV() != True and p.verValorSIDA() != True and p.verValorSifilis() != True and p.verOtrasEnfer() !=True and p.verTextoOtrasEnfer() == None and (d.verEdad() >= 18 or d.verEdad() <= 65) and d.verPeso() > 50:
+            if (p.verHemoglobina() >= 13.3 and p.verHemoglobina() <= 16.6) and p.verValorHepatitisB() !=True and p.verValorHepatitisC() != True and p.verValorChagas() != True and p.verAnemia() != True and p.verValorHTLV() != True and p.verValorSIDA() != True and p.verValorSifilis() != True and p.verOtrasEnfer() !=True and p.verTextoOtrasEnfer() == None and (d.verEdad() >= 18 and d.verEdad() <= 65) and d.verPeso() >= 50:
                 c=c+1
                 return c
             else:
@@ -321,8 +320,7 @@ class Sistema():
         
     
     
-    def NumAptoDonante(self,CCdonante):
-        #for CCdonante in self.__dicc_Donantes:
+    def NumAptoDonante(self,hemoglo):
             hemoglo=self.filtroDonante()
             return hemoglo
             

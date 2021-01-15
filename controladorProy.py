@@ -59,7 +59,6 @@ def main():
     mi_sistema = Sistema()
     mi_controlador = Coordinador(mi_vista, mi_sistema)
     mi_vista.asignarControlador(mi_controlador)
-    
     mi_vista.show()
     sys.exit(app.exec_())
 

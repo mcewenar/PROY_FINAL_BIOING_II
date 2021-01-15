@@ -116,7 +116,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>EDITAR NOMBRE:</string>
+    <string>EDITAR NOMBRE(S):</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -129,7 +129,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>EDITAR APELLIDO:</string>
+    <string>EDITAR APELLIDOS:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
