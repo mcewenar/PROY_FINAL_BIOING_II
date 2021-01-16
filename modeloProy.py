@@ -299,28 +299,27 @@ class Sistema():
         if cc in self.__dicc_receptores.keys():
             Paciente_Receptor = self.__dicc_receptores[cc]
             return Paciente_Receptor
-        else : 
+        else: 
             return False
     
     
     def verificarIdReceptor(self,CCpaciente):
         resultado=CCpaciente in self.__dicc_receptores.keys()
         return resultado
-####################################################
     
-    def filtroDonante(self,c=0):
-        for CCdonante in self.__dicc_Donantes.keys():
-            p=Examenes()
-            d=Donante()
-            if (p.verHemoglobina() >= 13.3 and p.verHemoglobina() <= 16.6) and p.verValorHepatitisB() !=True and p.verValorHepatitisC() != True and p.verValorChagas() != True and p.verAnemia() != True and p.verValorHTLV() != True and p.verValorSIDA() != True and p.verValorSifilis() != True and p.verOtrasEnfer() !=True and p.verTextoOtrasEnfer() == None and (d.verEdad() >= 18 and d.verEdad() <= 65) and d.verPeso() >= 50:
+    def filtroDonante(self,cc):
+        for cc in self.__dicc_Donantes.keys():
+            c=0
+            donante = self.__dicc_Donantes[cc]
+            examenes = donante.verExamenes()
+            if (examenes.verHemoglobina() >= 13.3 and examenes.verHemoglobina() <= 16.6) and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                 c=c+1
                 return c
             else:
                 return 0
         
-    
-    
-    def NumAptoDonante(self,hemoglo):
-            hemoglo=self.filtroDonante()
+        
+    def NumAptoDonante(self,cc):
+            hemoglo=self.filtroDonante(cc)
             return hemoglo
             

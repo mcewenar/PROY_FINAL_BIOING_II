@@ -229,7 +229,7 @@ class AbrirNuevoDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo de ingreso de Hemoglobina Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo de ingreso de Hemoglobina Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -240,7 +240,7 @@ class AbrirNuevoDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo de ingreso de Hierro Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo de ingreso de Hierro Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -251,7 +251,7 @@ class AbrirNuevoDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Identificación de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Identificación de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -263,7 +263,7 @@ class AbrirNuevoDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Teléfono de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Teléfono de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -274,7 +274,7 @@ class AbrirNuevoDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Edad de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Edad de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -285,7 +285,7 @@ class AbrirNuevoDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Peso de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Peso de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         self.__TextOtrasEnfermedades   = self.lineEdit_Otras_Enf.text()    
@@ -332,12 +332,12 @@ class AbrirNuevoDonante(QDialog):
         elif nueva_ident <=0:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo "Cédula" de Donante no puede estar vacio ni ser letra')
+            msgBox.setText('El campo Cédula de Donante no puede estar vacío ni ser letra')
             msgBox.show()
         elif tel_don <=0:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Telefono de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Teléfono de Donante no puede estar vacío ni ser cero')
             msgBox.show()
         elif edad_don <=0:
             msgBox.setIcon(QMessageBox.Warning)
@@ -382,12 +382,12 @@ class AbrirNuevoDonante(QDialog):
             if ingreso_donante==True:
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('¡Alerta!')
-                msgBox.setText('Donante ingresado con exito')     
+                msgBox.setText('Donante ingresado con éxito')     
                 msgBox.show()
                                         
             else:
                 msgBox.setIcon(QMessageBox.Warning)
-                msgBox.setText('El donante con identificacion '+str(nueva_ident)+' ya existe.\n\n           Intentelo de nuevo.')
+                msgBox.setText('El donante con identificación '+str(nueva_ident)+' ya existe.\n\n           Inténtalo de nuevo.')
                 msgBox.show()                
 
             ventanaMenDon = VentanaDonante(self)
@@ -438,7 +438,7 @@ class VerificacionVerDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Ver Donante')
-            msgBox.setText('El donante con identificacion '+str(cedula)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El donante con identificación '+str(cedula)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaMenDon = VentanaDonante(self)
             ventanaMenDon.asignarControlador(self.__mi_controlador)
@@ -468,7 +468,7 @@ class VentanaVerDonante(QDialog):
             
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle(" ATENCION")
+            msgBox.setWindowTitle(" ATENCIÓN")
             msgBox.setText('La cédula ingresada NO se encuentra registrada.')
             msgBox.show()
         
@@ -584,7 +584,7 @@ class VerificarEditarDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Editar Donante')
-            msgBox.setText('El donante con identificacion '+str(ident)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El donante con identificación '+str(ident)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaMenDon = VentanaDonante(self)
             ventanaMenDon.asignarControlador(self.__mi_controlador)
@@ -722,7 +722,7 @@ class EditarDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo de ingreso de Hemoglobina Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo de ingreso de Hemoglobina Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -733,7 +733,7 @@ class EditarDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo de ingreso de Hierro Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo de ingreso de Hierro Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -744,7 +744,7 @@ class EditarDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Identificación de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Identificación de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -755,8 +755,8 @@ class EditarDonante(QDialog):
         except:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo Teléfono de Donante no puede estar vacio ni ser cero')
+            msgBox.setWindowTitle("¡Alerta!")
+            msgBox.setText('El campo Teléfono de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -767,7 +767,7 @@ class EditarDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Edad de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Edad de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -777,8 +777,8 @@ class EditarDonante(QDialog):
         except:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo Peso de Donante no puede estar vacio ni ser cero')
+            msgBox.setWindowTitle("¡Alerta!")
+            msgBox.setText('El campo Peso de Donante no puede estar vacío ni ser cero')
             msgBox.show()
             return
         self.__TextOtrasEnfermedades=self.lineEdit_OtraEnfer.text()    
@@ -795,7 +795,7 @@ class EditarDonante(QDialog):
         msgBox = QMessageBox(self)
         if verif_nombre=='': 
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("¡Alerta Edición!")
+            msgBox.setWindowTitle("¡Alerta!")
             msgBox.setText('Debe ingresar campo Nombre de Donante')
             msgBox.show()
         elif verif_apellido=='': 
@@ -816,31 +816,31 @@ class EditarDonante(QDialog):
         elif nueva_ident <=0:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo "Cédula" de Donante no puede estar vacio ni ser letra')
+            msgBox.setText('El campo Cédula de Donante no puede estar vacío ni ser letra')
             msgBox.show()
         elif tel_don <=0:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo Telefono de Donante no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Teléfono de Donante no puede estar vacío ni ser cero')
             msgBox.show()
         elif edad_don <=0:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("Alerta Edición")
-            msgBox.setText('El campo edad de donante no puede estar vacío')
+            msgBox.setText('El campo Edad de Donante no puede estar vacío')
             msgBox.show()
         elif peso_don <= 0:
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("Ingreso de datos - ATENCION")
+            msgBox.setWindowTitle("Ingreso de datos - ATENCIÓN")
             msgBox.setText('Debe seleccionar un Peso mayor o igual a 0')
             msgBox.show()
         elif Hemoglobina <= 0:
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("Ingreso de datos - ATENCION")
+            msgBox.setWindowTitle("Ingreso de datos - ATENCIÓN")
             msgBox.setText('Debe llenar completo el campo Hemoglobina de Donante')
             msgBox.show()
         elif hierroS <=0:
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("Ingreso de datos - ATENCION")
+            msgBox.setWindowTitle("Ingreso de datos - ATENCIÓN")
             msgBox.setText('Debe llenar completo el campo Hierro de Donante')
             msgBox.show()
             
@@ -863,7 +863,7 @@ class EditarDonante(QDialog):
             if edicion == True:
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('¡Alerta!')
-                msgBox.setText('Donante editado con exito')     
+                msgBox.setText('Donante editado con éxito')     
                 msgBox.show()  
             elif edicion == False:                                                
                 msgBox.setIcon(QMessageBox.Information)
@@ -913,7 +913,7 @@ class EliminarDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Eliminar Donante')
-            msgBox.setText('El donante a eliminar con identificacion '+str(nueva_ident)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El donante a eliminar con identificación '+str(nueva_ident)+' no existe.\n\n           Inténtalo de nuevo.')
             msgBox.show()
             ventanaMenDon = VentanaDonante(self)
             ventanaMenDon.asignarControlador(self.__mi_controlador)
@@ -1074,7 +1074,7 @@ class VentanaIngresoPac(QDialog):
            
            msgBox.setIcon(QMessageBox.Warning)
            msgBox.setWindowTitle("VALIDACIÓN")
-           msgBox.setText("En campos cedula, edad, telefono y peso solo podrá ingresar datos númericos, por favor vuelva y revise.")
+           msgBox.setText("En campos cédula, edad, teléfono y peso solo podrá ingresar datos númericos, por favor verifique.")
            msgBox.show()
            return
        
@@ -1087,16 +1087,22 @@ class VentanaIngresoPac(QDialog):
            #Mostrar mensaje de alerta           
            msgBox.setIcon(QMessageBox.Warning)
            msgBox.setWindowTitle("Ingresar Paciente")
-           msgBox.setText("No puede haber ningun campo en blanco, por favor ingrese toda la informacion")
+           msgBox.setText("No puede haber ningun campo en blanco, por favor ingrese toda la información")
            msgBox.show()           
            
         else:    #Guardará los datos
-            self.__mi_controlador.recibirPaciente(NomPac,ApePac,CiuPac,generoPac,EdadPac,PesoPac,tipoSangre ,TelPac,CedulaPac,CorreoPac)
-               #Verifica el resultado de la operacion
-            msgBox.setIcon(QMessageBox.Information)
-            msgBox.setWindowTitle('¡Alerta!')
-            msgBox.setText("Paciente con identificación " +str(CedulaPac)+ " ingresado con exito")     
-            msgBox.show() 
+            ingreso_paciente= self.__mi_controlador.recibirPaciente(NomPac,ApePac,CiuPac,generoPac,EdadPac,PesoPac,tipoSangre ,TelPac,CedulaPac,CorreoPac)
+            if ingreso_paciente==True:
+                msgBox.setIcon(QMessageBox.Information)
+                msgBox.setWindowTitle('¡Alerta!')
+                msgBox.setText("Paciente con identifación "+str(CedulaPac)+ " ingresado con éxito")     
+                msgBox.show()
+                                        
+            else:
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.setText('El paciente con identificación '+str(CedulaPac)+' ya existe.\n\n           Inténtalo de nuevo.')
+                msgBox.show()                
+                
             self.Volver_Menu()
             self.hide()     
     
@@ -1148,7 +1154,7 @@ class VerificarPaciente_Ver(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Ver PACIENTE')
-            msgBox.setText('El PACIENTE con identificacion '+str(cc)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El PACIENTE con identificación '+str(cc)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)
@@ -1246,7 +1252,7 @@ class VerificarPaciente_Editar(QDialog):
         if verificar==True:
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Information)
-            msgBox.setWindowTitle('Editar DPaciente')
+            msgBox.setWindowTitle('Editar Paciente')
             mensaje=("Paciente con identificación "+str(ident))
             msgBox.setText(mensaje)
             msgBox.show()                
@@ -1260,7 +1266,7 @@ class VerificarPaciente_Editar(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Editar Paciente')
-            msgBox.setText('El Paciente con identificacion '+str(ident)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El Paciente con identificación '+str(ident)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)
@@ -1356,7 +1362,7 @@ class EditarPaciente(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta!")
-            msgBox.setText('El campo Identificación de Paciente no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Identificación de Paciente no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -1368,7 +1374,7 @@ class EditarPaciente(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo Teléfono de Paciente no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Teléfono de Paciente no puede estar vacío ni ser cero')
             msgBox.show()
             return
         
@@ -1390,7 +1396,7 @@ class EditarPaciente(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo Peso de Paciente no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Peso de Paciente no puede estar vacío ni ser cero')
             msgBox.show()
             return
             
@@ -1428,12 +1434,12 @@ class EditarPaciente(QDialog):
         elif nueva_ident <=0:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo "Cédula" de Paciente no puede estar vacio ni ser letra')
+            msgBox.setText('El campo "Cédula" de Paciente no puede estar vacío ni ser letra')
             msgBox.show()
         elif tel_don <=0:
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle("¡Alerta Edición!")
-            msgBox.setText('El campo Telefono de Paciente no puede estar vacio ni ser cero')
+            msgBox.setText('El campo Teléfono de Paciente no puede estar vacío ni ser cero')
             msgBox.show()
         elif edad_don <=0:
             msgBox.setIcon(QMessageBox.Warning)
@@ -1442,7 +1448,7 @@ class EditarPaciente(QDialog):
             msgBox.show()
         elif peso_don <= 0:
             msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("Ingreso de datos - ATENCION")
+            msgBox.setWindowTitle("Ingreso de datos - ATENCIÓN")
             msgBox.setText('Debe seleccionar un Peso mayor o igual a 0')
             msgBox.show()
            
@@ -1455,7 +1461,7 @@ class EditarPaciente(QDialog):
             if edicion == True:
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('¡Alerta!')
-                msgBox.setText('Paciente editado con exito')     
+                msgBox.setText('Paciente editado con éxito')     
                 msgBox.show()  
                 
             elif edicion == False:
@@ -1510,7 +1516,7 @@ class EliminarPaciente(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Eliminar Donante')
-            msgBox.setText('El paciente que se desea eliminar con identificacion '+str(nueva_ident)+' no existe.\n\n           Inténtelo de nuevo.')
+            msgBox.setText('El paciente que se desea eliminar con identificación '+str(nueva_ident)+' no existe.\n\n           Inténtelo de nuevo.')
             msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)
@@ -1556,7 +1562,7 @@ class BuscarUnDonante(QDialog):
                 msgBox = QMessageBox(self)
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('Buscar Donante')
-                mensaje=("Lo siento, en estos momentos no hay donantes disponibles")
+                mensaje=("Lo sentimos, en estos momentos no hay donantes disponibles")
                 msgBox.setText(mensaje)
                 msgBox.show()
                 ventanaPac = VentanaPaciente(self)
@@ -1567,7 +1573,7 @@ class BuscarUnDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Buscar Donante')
-            msgBox.setText("La identifiación de paciente "+ str(c)+" que ingresó no existe.\n\n           Inténtelo de nuevo.")
+            msgBox.setText("La identifiación de paciente "+ str(c)+" que ingresó no existe.\n\n           Inténtalo de nuevo.")
             msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)
@@ -1607,7 +1613,7 @@ class VentanaDatosEstadisticos(QDialog):
         grafico.clear()               
         grafico.hist(L)
         grafico.set_xlabel('Tipos de sangre')
-        grafico.set_ylabel('Numero pacientes')
+        grafico.set_ylabel('Número pacientes')
         grafico.set_title("Tipos de sangre Pacientes")
         grafico.grid()
         grafico.plot()
@@ -1621,8 +1627,8 @@ class VentanaDatosEstadisticos(QDialog):
         grafico.clear() 
         grafico.hist(L_Enfermedad)
         grafico.set_xlabel('Enfermedades de los Pacientes')
-        grafico.set_ylabel('Numero pacientes')
-        grafico.set_title("Enfermedades Venereas")
+        grafico.set_ylabel('Número pacientes')
+        grafico.set_title("Enfermedades Venéreas")
         grafico.grid()
         grafico.plot()
     
