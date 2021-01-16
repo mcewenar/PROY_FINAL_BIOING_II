@@ -308,9 +308,9 @@ class Sistema():
         return resultado
     
     def filtroDonante(self,ccDon,ccPac):
-        for cc in self.__dicc_Donantes.keys():
+        paci= self.__dicc_receptores[ccPac]
+        for ccDon in self.__dicc_Donantes.keys():
             c=0
-            paci= self.__dicc_receptores[ccPac]
             donante = self.__dicc_Donantes[ccDon]
             examenes = donante.verExamenes()
             if donante.verGenero() == "Femenino":
@@ -420,7 +420,7 @@ class Sistema():
                 return 0
                 
         
-    def NumAptoDonante(self,cc):
-            hemoglo=self.filtroDonante(cc)
+    def NumAptoDonante(self,cc,ccPac):
+            hemoglo=self.filtroDonante(cc,ccPac)
             return hemoglo
             

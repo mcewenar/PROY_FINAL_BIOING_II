@@ -1546,12 +1546,12 @@ class BuscarUnDonante(QDialog):
         nueva_ident = int(self.InputCedula.text())
         verificar=self.__mi_controlador.verificarIdPac(nueva_ident)
         if verificar==True:
-            c=self.__mi_controlador.filtradoDonante(nueva_ident)
-            if c > 0:
+            ccPac=self.__mi_controlador.filtradoDonante(nueva_ident)
+            if ccPac > 0:
                 msgBox = QMessageBox(self)
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('Buscar Donante')
-                mensaje=("Hay "+str(c)+ "Donantes disponibles para transfusión de sangre")
+                mensaje=("Hay "+str(ccPac)+ "Donantes disponibles para transfusión de sangre")
                 msgBox.setText(mensaje)
                 msgBox.show()
                 ventanaPac = VentanaPaciente(self)
