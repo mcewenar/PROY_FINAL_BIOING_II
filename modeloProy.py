@@ -307,17 +307,118 @@ class Sistema():
         resultado=CCpaciente in self.__dicc_receptores.keys()
         return resultado
     
-    def filtroDonante(self,cc):
+    def filtroDonante(self,ccDon,ccPac):
         for cc in self.__dicc_Donantes.keys():
             c=0
-            donante = self.__dicc_Donantes[cc]
+            paci= self.__dicc_receptores[ccPac]
+            donante = self.__dicc_Donantes[ccDon]
             examenes = donante.verExamenes()
-            if (examenes.verHemoglobina() >= 13.3 and examenes.verHemoglobina() <= 16.6) and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
-                c=c+1
-                return c
-            else:
+            if donante.verGenero() == "Femenino":
+                if paci.verTipoSangre()== "A+":
+                    if (donante.verTipoSangre =="O+" or donante.verTipoSangre == "O-" or donante.verTipoSangre == "A+" or donante.verTipoSangre == "A-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                
+                elif paci.verTipoSangre()== "A-":
+                    if (donante.verTipoSangre =="A-" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "B+":
+                    if (donante.verTipoSangre =="B+" or donante.verTipoSangre == "O-"  or donante.verTipoSangre == "O+" or donante.verTipoSangre == "B-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "B-":
+                    if (donante.verTipoSangre =="B-" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "AB+":
+                    if examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "AB-":
+                    if (donante.verTipoSangre =="A-" or donante.verTipoSangre == "B-" or donante.verTipoSangre == "AB-" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "O+":
+                    if (donante.verTipoSangre =="O+" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "O-":
+                    if donante.verTipoSangre == "O-" and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                else:
+                    return 0
+                    
+            elif donante.verGenero() == "Masculino":
+                if paci.verTipoSangre()== "A+":
+                    if (donante.verTipoSangre =="O+" or donante.verTipoSangre == "O-" or donante.verTipoSangre == "A+" or donante.verTipoSangre == "A-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                
+                elif paci.verTipoSangre()== "A-":
+                    if (donante.verTipoSangre =="A-" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "B+":
+                    if (donante.verTipoSangre =="B+" or donante.verTipoSangre == "O-"  or donante.verTipoSangre == "O+" or donante.verTipoSangre == "B-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "B-":
+                    if (donante.verTipoSangre =="B-" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "AB+":
+                    if examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "AB-":
+                    if (donante.verTipoSangre =="A-" or donante.verTipoSangre == "B-" or donante.verTipoSangre == "AB-" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "O+":
+                    if (donante.verTipoSangre =="O+" or donante.verTipoSangre == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                elif paci.verTipoSangre()== "O-":
+                    if donante.verTipoSangre == "O-" and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis != True and examenes.verOtrasEnfer() !=True and examenes.verTextoOtrasEnfer() == None and (examenes.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
+                        c=c+1
+                        return c
+                    else:
+                        return 0
+                else:
+                    return 0
+            
+                
+            else: 
                 return 0
-        
+                
         
     def NumAptoDonante(self,cc):
             hemoglo=self.filtroDonante(cc)
