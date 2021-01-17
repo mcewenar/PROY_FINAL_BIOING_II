@@ -49,8 +49,8 @@ class Coordinador:
     def Regresar_Paciente(self,cc):
         Paciente_Receptor = self.__modelo.Regresar_Paciente(cc)
         return Paciente_Receptor
-    def filtradoDonante(self,num,ccPac):
-        return self.__modelo.NumAptoDonante(num,ccPac)
+    def filtroDonante(self,ccPac):
+        return self.__modelo.filtroDonante(ccPac)
         
 
 def main():

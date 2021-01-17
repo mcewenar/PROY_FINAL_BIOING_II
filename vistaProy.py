@@ -1543,22 +1543,22 @@ class BuscarUnDonante(QDialog):
         self.__mi_controlador = c
     
     def confirmarBuscarDonante(self):
-        nueva_ident = int(self.InputCedula.text())
-        verificar=self.__mi_controlador.verificarIdPac(nueva_ident)
+        ident = int(self.InputCedula.text())
+        verificar=self.__mi_controlador.verificarIdPac(ident)
         if verificar==True:
-            ccPac=self.__mi_controlador.filtradoDonante(nueva_ident)
-            if ccPac > 0:
+            NDon=self.__mi_controlador.filtroDonante(ident)
+            if NDon > 0:
                 msgBox = QMessageBox(self)
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('Buscar Donante')
-                mensaje=("Hay "+str(ccPac)+ "Donantes disponibles para transfusión de sangre")
+                mensaje=("Hay "+str(NDon)+ " donante(s) disponible(s) para transfusión de sangre")
                 msgBox.setText(mensaje)
                 msgBox.show()
                 ventanaPac = VentanaPaciente(self)
                 ventanaPac.asignarControlador(self.__mi_controlador)
                 ventanaPac.show()
                 self.hide()
-            else:
+            elif NDon == 0:
                 msgBox = QMessageBox(self)
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('Buscar Donante')
@@ -1573,7 +1573,7 @@ class BuscarUnDonante(QDialog):
             msgBox = QMessageBox(self)
             msgBox.setIcon(QMessageBox.Warning)
             msgBox.setWindowTitle('Buscar Donante')
-            msgBox.setText("La identifiación de paciente "+ str(c)+" que ingresó no existe.\n\n           Inténtalo de nuevo.")
+            msgBox.setText("La identifiación de paciente "+ str(ident)+" que ingresó no existe.\n\n           Inténtalo de nuevo.")
             msgBox.show()
             ventanaPac = VentanaPaciente(self)
             ventanaPac.asignarControlador(self.__mi_controlador)
