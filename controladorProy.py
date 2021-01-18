@@ -27,6 +27,12 @@ class Coordinador:
     def RegresarDonante(self,cc):
         Donante = self.__modelo.Regresar_Donante(cc)
         return Donante
+    def verNumDonantes(self):
+        return self.__modelo.verNumDonantes()
+    def RegresarList_NomDon_Compat(self):
+        return self.__modelo.RegresarList_NomDon_Compat()
+    def RegresarList_CCDonCompat(self):
+        return self.__modelo.RegresarList_CCDonCompat() 
     
     
 
@@ -51,8 +57,15 @@ class Coordinador:
         return Paciente_Receptor
     def filtroDonante(self,ccPac):
         return self.__modelo.filtroDonante(ccPac)
-        
-
+########################MÉTODOS OPCIÓN 3 MENÚ PRINCIPAL (HISTOGRAMAS) #############################################    
+    def Regresar_Lista_Sangre(self):
+        Lista_Sangre = self.__modelo.verListaTiposSangre()
+        return Lista_Sangre
+    
+    def Regresar_Lista_Enf(self):
+        Lista_Enfermedades = self.__modelo.verListaEnfermedadHist()
+        return Lista_Enfermedades
+    
 def main():
     app = QApplication(sys.argv)
     mi_vista = VentanaPrincipal()

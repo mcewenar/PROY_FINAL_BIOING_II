@@ -53,6 +53,7 @@ class VentanaPrincipal(QMainWindow):
     def AbrirVentanaDatosGraficos(self):
         ventanaingreso = VentanaDatosEstadisticos(self)
         ventanaingreso.asignarControlador(self.__mi_controlador)
+        ventanaingreso.graficar()
         ventanaingreso.show()
         self.hide() 
 
@@ -1548,17 +1549,14 @@ class BuscarUnDonante(QDialog):
         if verificar==True:
             NDon=self.__mi_controlador.filtroDonante(ident)
             if NDon > 0:
-                msgBox = QMessageBox(self)
-                msgBox.setIcon(QMessageBox.Information)
-                msgBox.setWindowTitle('Buscar Donante')
-                mensaje=("Hay "+str(NDon)+ " donante(s) disponible(s) para transfusión de sangre")
-                msgBox.setText(mensaje)
-                msgBox.show()
-                ventanaPac = VentanaPaciente(self)
-                ventanaPac.asignarControlador(self.__mi_controlador)
-                ventanaPac.show()
-                self.hide()
-            elif NDon == 0:
+                tabla = VentanaTablaBuscarDonante(self)
+                tabla.asignarControlador(self.__mi_controlador)
+                tabla.MostrarNumeroDonantes(NDon,ident)
+                tabla.TabularDonantes()
+                tabla.show()
+
+            if NDon == 0:
+
                 msgBox = QMessageBox(self)
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('Buscar Donante')
@@ -1585,6 +1583,48 @@ class BuscarUnDonante(QDialog):
         ventanaPac.asignarControlador(self.__mi_controlador)
         ventanaPac.show()   
         self.hide() 
+
+class VentanaTablaBuscarDonante(QDialog):
+    def __init__(self,ppal=None):
+        super(VentanaTablaBuscarDonante,self).__init__(ppal)
+        loadUi('Tabla_BuscarDonante.ui',self)  
+        self.__ventana_principal=ppal      
+        self.setup()
+        
+        
+    def setup(self):        
+        self.BotonVolver.clicked.connect(self.Volver)
+    
+    def MostrarNumeroDonantes(self,Ndon,ident):
+        self.label_2.setText(" HAY " + str(Ndon) + " DONATES COMPATIBLES, DE " + str(self.__mi_controlador.verNumDonantes()) + " DONANTES EN SISTEMA \n PARA EL PACIENTE CON ID : " + str(ident))
+
+    def TabularDonantes(self):
+        List_Nom = self.__mi_controlador.RegresarList_NomDon_Compat()
+        List_Id = self.__mi_controlador.RegresarList_CCDonCompat()
+        i=-1
+        j=-1
+        print(len(List_Nom))
+        print(len(List_Id))
+        for Nombre in List_Nom :
+            i=i+1
+            Nom = QTableWidgetItem(str(Nombre))
+            print(Nombre)            
+            self.TablaDonComp.setItem(i,0,Nom)
+        for ID in List_Id:
+            j=j+1                
+            Iden = QTableWidgetItem(str(ID))                
+            self.TablaDonComp.setItem(j,1,Iden)
+            print(ID)
+
+    def asignarControlador(self,c):
+        self.__mi_controlador = c
+    
+    def Volver(self):
+        ventanaPac = VentanaPaciente(self)
+        ventanaPac.asignarControlador(self.__mi_controlador)
+        ventanaPac.show()   
+        self.hide() 
+
 ############################MENÚ PRINCIPAL 3 (VISUALIZAR GRÁFICAS DE LOS DATOS ACTUALES DEL SISTEMA)############################################################
 class VentanaDatosEstadisticos(QDialog):
     def __init__(self,ppal=None):
@@ -1592,48 +1632,64 @@ class VentanaDatosEstadisticos(QDialog):
         loadUi('datos_estadisticos.ui',self)
         self.__ventana_principal=ppal
         self.setup()
+                
         
     def setup(self):
-        self.Boton_Volver.clicked.connect(self.Volver)        
-        self.Boton_TiposS.clicked.connect(self.GraficarTiposSangre)
-        self.Boton_EnfermedadV.clicked.connect(self.GraficarEnferVener)  
+        self.Boton_Volver.clicked.connect(self.Volver)             
+        
     
     def Volver(self):
         ventanaGeneral = VentanaPrincipal(self)
         ventanaGeneral.asignarControlador(self.__mi_controlador)
         ventanaGeneral.show()    
         self.hide()
- 
-    def GraficarTiposSangre(self,L):       
-        self.figure=Figure()
-        self.canvas=FigureCanvas(self.figure)         
-        self.Histogramas.addWidget(self.canvas)        
-        grafico = self.figure.add_subplot(111)
-
-        grafico.clear()               
-        grafico.hist(L)
-        grafico.set_xlabel('Tipos de sangre')
-        grafico.set_ylabel('Número pacientes')
-        grafico.set_title("Tipos de sangre Pacientes")
-        grafico.grid()
-        grafico.plot()
- 
-    def GraficarEnferVener(self,L_Enfermedad):
-        self.figure=Figure()
-        self.canvas=FigureCanvas(self.figure)         
-        self.Histogramas.addWidget(self.canvas) 
-
-        grafico = self.figure.add_subplot(111)        
-        grafico.clear() 
-        grafico.hist(L_Enfermedad)
-        grafico.set_xlabel('Enfermedades de los Pacientes')
-        grafico.set_ylabel('Número pacientes')
-        grafico.set_title("Enfermedades Venéreas")
-        grafico.grid()
-        grafico.plot()
-    
+        
+        
     def asignarControlador(self,c):
         self.__mi_controlador = c
+    
+    def graficar(self):
+        self.L_Enfermedad=self.__mi_controlador.Regresar_Lista_Enf()
+        self.L= self.__mi_controlador.Regresar_Lista_Sangre()        
+        
+        self.figure=Figure()
+        self.canvas=FigureCanvas(self.figure)                 
+        self.Histogramas.addWidget(self.canvas)
+        self.grafico = self.figure.add_subplot(111)
+
+        self.figure2 = Figure() 
+        self.canvas2=FigureCanvas(self.figure2)  
+        self.Histogramas_2.addWidget(self.canvas2) 
+        self.grafico2 = self.figure2.add_subplot(111)
+
+        self.GraficarTiposSangre()
+        self.GraficarEnferVener()
+        
+        Don_actuales = str(self.__mi_controlador.verNumDonantes())
+        self.label_2.setText("                                                       ACTUALMENTE EXISTEN "+ Don_actuales+" DONANTES EN EL SISTEMA.")
+
+ 
+    def GraficarTiposSangre(self):  
+       
+        self.grafico.clear()               
+        self.grafico.hist(self.L)
+        self.grafico.set_xlabel('Tipos de sangre')
+        self.grafico.set_ylabel('Donantes')
+        self.grafico.set_title("Tipos de sangre de los Donantes")
+        self.grafico.grid()
+        self.grafico.plot()
+  
+    def GraficarEnferVener(self):
+        self.grafico2.clear() 
+        self.grafico2.hist(self.L_Enfermedad)
+        self.grafico2.set_xlabel('Enfermedades en los Donantes')
+        self.grafico2.set_ylabel('Donantes ')
+        self.grafico2.set_title("Enfermedades Venéreas")
+        self.grafico2.grid()
+        self.grafico2.plot()
+       
+    
+        
 ########################MENÚ PRINCIPAL #4 (GENERAR UN CONTEO CELULAR (IMAGEN PNG))####################################################
 
 class VentanaConteoCelular(QDialog):

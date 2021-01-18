@@ -138,6 +138,18 @@ class Sistema():
 
         self.__dicc_receptores = {}
         self.__dicc_Donantes= {}
+        self.__Lista_Tipos_Sangre= []
+        self.__Lista_Enfermedades_Venereas= []
+        
+        
+    def verListaEnfermedadHist(self):   
+        return self.__Lista_Enfermedades_Venereas
+    
+    def verListaTiposSangre(self):
+        return self.__Lista_Tipos_Sangre  
+    
+              
+
 
 ##############################DONANTES########################################   
 
@@ -157,6 +169,7 @@ class Sistema():
             Don.asignarCorreo(correo)
             Don.asignarCiudad(ciudad)
             Don.asignarTipoSangre(sangre)
+            self.__Lista_Tipos_Sangre.append(str(sangre))
             Don.asignarPeso(peso_don)                
             ex=Examenes()        
             ex.asignarHierro(hierroS)
@@ -170,8 +183,21 @@ class Sistema():
             ex.asignarValorChagas(chagas)
             ex.asignarOtrasEnfermedades(otrasEnf)
             ex.asignarValorSifilis(sifilis)
-            ex.asignarTextoOtrasEnfermedades(TextoOtrasEnf)
-            
+            ex.asignarTextoOtrasEnfermedades(str(TextoOtrasEnf))
+            if sifilis == True:
+                self.__Lista_Enfermedades_Venereas.append("Sifilis")
+            if hepaB == True:
+                self.__Lista_Enfermedades_Venereas.append("Hepatitis B")
+            if hepaC == True:
+                self.__Lista_Enfermedades_Venereas.append("Hepatitic C")
+            if sida == True:
+                self.__Lista_Enfermedades_Venereas.append('Sida')
+            if htlv == True:
+                self.__Lista_Enfermedades_Venereas.append("HTLV")
+            if chagas == True:
+                self.__Lista_Enfermedades_Venereas.append("Chagas")
+            if otrasEnf ==True:
+                self.__Lista_Enfermedades_Venereas.append("Otras")
             Don.asignarExamenes(ex)
             self.__dicc_Donantes[ident]=Don
         
@@ -198,6 +224,8 @@ class Sistema():
             don.asignarTel(tel)
             don.asignarCorreo(mail)
             don.asignarCiudad(ciudad)
+
+            self.__Lista_Tipos_Sangre.append(str(tipo_sangre))
             
             ex=Examenes()
             ex.asignarHierro(hierro)
@@ -211,6 +239,20 @@ class Sistema():
             ex.asignarValorChagas(chagas)
             ex.asignarOtrasEnfermedades(otrasEnfer)
             ex.asignarTextoOtrasEnfermedades(TextoOtrasEnf)
+            if sifilis == True:
+                self.__Lista_Enfermedades_Venereas.append("Sifilis")
+            if hepatitisB == True:
+                self.__Lista_Enfermedades_Venereas.append("Hepatitis B")
+            if hepatitisC == True:
+                self.__Lista_Enfermedades_Venereas.append("Hepatitic C")
+            if sida == True:
+                self.__Lista_Enfermedades_Venereas.append('Sida')
+            if htlv == True:
+                self.__Lista_Enfermedades_Venereas.append("HTLV")
+            if chagas == True:
+                self.__Lista_Enfermedades_Venereas.append("Chagas")
+            if otrasEnfer ==True:
+                self.__Lista_Enfermedades_Venereas.append("Otras")
             
             
             don.asignarExamenes(ex)            
@@ -226,9 +268,35 @@ class Sistema():
         self.__dicc_Donantes[ncc] = self.__dicc_Donantes.pop(cc)
     
     def eliminarDonante(self,id):
-        del self.__dicc_Donantes[id]  
+        don = self.__dicc_Donantes[id] 
+        exam = don.verExamenes() 
         print("Donante eliminado")
+        sangre = don.verTipoSangre()
+        self.__Lista_Tipos_Sangre.remove(sangre)
+        if exam.verValorSifilis()  == True :            
+            self.__Lista_Enfermedades_Venereas.remove("Sifilis")          
+            
+        if exam.verValorHepatitisC() == True :
+            self.__Lista_Enfermedades_Venereas.remove("Hepatitic C")  
+            
+        if exam.verValorHepatitisB() == True:
+            self.__Lista_Enfermedades_Venereas.remove("Hepatitis B")  
+            
+        if exam.verValorSIDA() == True:
+            self.__Lista_Enfermedades_Venereas.remove('Sida')  
+            
+        if exam.verValorHTLV ()== True:
+            self.__Lista_Enfermedades_Venereas.remove("HTLV")  
+            
+        if exam.verValorChagas() == True:
+            self.__Lista_Enfermedades_Venereas.remove("Chagas")  
+           
+        if exam.verOtrasEnfer() ==True:
+            self.__Lista_Enfermedades_Venereas.remove("Otras")             
+
+        del self.__dicc_Donantes[id] 
         
+
     def verNumDonantes(self):
         return len(self.__dicc_Donantes)
 
@@ -312,6 +380,8 @@ class Sistema():
         recorridoDon = self.__dicc_Donantes.values()
         paci = self.__dicc_receptores[ccPac]
         c=0
+        self.Lista_Nombres = []
+        self.Lista_Id = []
         for donante in recorridoDon:                                    
                 
             examenes = donante.verExamenes()
@@ -321,87 +391,118 @@ class Sistema():
                    
                     if (donante.verTipoSangre() =="O+" or donante.verTipoSangre() == "O-" or donante.verTipoSangre() == "A+" or donante.verTipoSangre() == "A-") and examenes.verHemoglobina() >= 12.5  and ( examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True and  (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
+
                         
                 
                 elif paci.verTipoSangre()== "A-":
                     if (donante.verTipoSangre() =="A-" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                     
                         
                 elif paci.verTipoSangre()== "B+":
                     if (donante.verTipoSangre() =="B+" or donante.verTipoSangre() == "O-"  or donante.verTipoSangre() == "O+" or donante.verTipoSangre() == "B-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
-                        c=c+1                        
+                        c=c+1  
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())                      
                    
                         
                 elif paci.verTipoSangre()== "B-":
                     if (donante.verTipoSangre() =="B-" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
-                        c=c+1                        
+                        c=c+1  
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())                      
                    
                         
                 elif paci.verTipoSangre()== "AB+":
                     if examenes.verHemoglobina() >= 12.5  and (examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                                          
                         
                 elif paci.verTipoSangre()== "AB-":
                     if (donante.verTipoSangre() =="A-" or donante.verTipoSangre() == "B-" or donante.verTipoSangre() == "AB-" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
-                        
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                                             
                 elif paci.verTipoSangre()== "O+":
                     if (donante.verTipoSangre() =="O+" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
-                        
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())                        
                    
                         
                 elif paci.verTipoSangre()== "O-":
                     if donante.verTipoSangre() == "O-" and examenes.verHemoglobina() >= 12.5  and (examenes.verHierro() >= 60 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
-                                           
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())                                           
                 
                     
             elif donante.verGenero() == "Masculino":
                 if paci.verTipoSangre()== "A+":
                     if (donante.verTipoSangre() =="O+" or donante.verTipoSangre() == "O-" or donante.verTipoSangre() == "A+" or donante.verTipoSangre() == "A-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
-                        
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())                        
                 
                 elif paci.verTipoSangre()== "A-":
                     if (donante.verTipoSangre() =="A-" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
-                        
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())                        
                     
                         
                 elif paci.verTipoSangre()== "B+":
                     if (donante.verTipoSangre() =="B+" or donante.verTipoSangre() == "O-"  or donante.verTipoSangre() == "O+" or donante.verTipoSangre() == "B-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                         
                                            
                 elif paci.verTipoSangre()== "B-":
                     if (donante.verTipoSangre() =="B-" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                         
                                           
                 elif paci.verTipoSangre()== "AB+":
                     if examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                         
                                           
                 elif paci.verTipoSangre()== "AB-":
                     if (donante.verTipoSangre() =="A-" or donante.verTipoSangre() == "B-" or donante.verTipoSangre() == "AB-" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                         
                                             
                 elif paci.verTipoSangre()== "O+":
                     if (donante.verTipoSangre() =="O+" or donante.verTipoSangre() == "O-") and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                         
                                            
                 elif paci.verTipoSangre()== "O-":
                     if donante.verTipoSangre() == "O-" and examenes.verHemoglobina() >= 13.5  and (examenes.verHierro() >= 70 and examenes.verHierro() <= 180)  and examenes.verValorHepatitisB() !=True and examenes.verValorHepatitisC() != True and examenes.verValorChagas() != True and examenes.verAnemia() != True and examenes.verValorHTLV() != True and examenes.verValorSIDA() != True and examenes.verValorSifilis() != True and examenes.verOtrasEnfer() !=True  and (donante.verEdad() >= 18 and donante.verEdad() <= 65) and donante.verPeso() >= 50:
                         c=c+1
+                        self.Lista_Nombres.append((donante.verNombre()+donante.verApellido()))
+                        self.Lista_Id.append(donante.verIdent())
                           
                 
         return c
-                
+    def RegresarList_NomDon_Compat(self):
+        return self.Lista_Nombres
+    def RegresarList_CCDonCompat(self):
+        return self.Lista_Id            
      
