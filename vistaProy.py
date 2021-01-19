@@ -383,7 +383,7 @@ class AbrirNuevoDonante(QDialog):
             if ingreso_donante==True:
                 msgBox.setIcon(QMessageBox.Information)
                 msgBox.setWindowTitle('¡Alerta!')
-                msgBox.setText('Donante ingresado con éxito')     
+                msgBox.setText("Donante con identificación " +str(nueva_ident) +"\n\n ha sido ingresado con éxito")    
                 msgBox.show()
                                         
             else:
@@ -1554,6 +1554,7 @@ class BuscarUnDonante(QDialog):
                 tabla.MostrarNumeroDonantes(NDon,ident)
                 tabla.TabularDonantes()
                 tabla.show()
+                self.hide()
 
             if NDon == 0:
 
@@ -1596,7 +1597,7 @@ class VentanaTablaBuscarDonante(QDialog):
         self.BotonVolver.clicked.connect(self.Volver)
     
     def MostrarNumeroDonantes(self,Ndon,ident):
-        self.label_2.setText(" HAY " + str(Ndon) + " DONATES COMPATIBLES, DE " + str(self.__mi_controlador.verNumDonantes()) + " DONANTES EN SISTEMA \n PARA EL PACIENTE CON ID : " + str(ident))
+        self.label_2.setText(" HAY " + str(Ndon) + " DONANTE(S) COMPATIBLE(S), DE " + str(self.__mi_controlador.verNumDonantes()) + " DONANTE(S) EN SISTEMA \n PARA EL PACIENTE CON ID : " + str(ident))
 
     def TabularDonantes(self):
         List_Nom = self.__mi_controlador.RegresarList_NomDon_Compat()

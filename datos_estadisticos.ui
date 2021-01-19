@@ -165,7 +165,7 @@
     <string notr="true">background-color: rgb(247, 247, 247);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;INFORMACION ACTUAL DE LOS DONANTES EN SISTEMA&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;INFORMACION ACTUAL DE TIPOS DE SANGRE DE TODOS LOS DONANTES VS. ITS DE DONANTES &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;NO APTOS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
