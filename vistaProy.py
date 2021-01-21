@@ -13,6 +13,7 @@ import numpy as np
 
 import os
  
+
 ########################################MENÚ PRINCIPAL##############################################
 regex = QRegExp("[a-z A-Z]+")
 validator = QRegExpValidator(regex) #The QRegExpValidator class is used to check a 
