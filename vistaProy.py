@@ -10,6 +10,8 @@ from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 
 import cv2
 import numpy as np
+
+import os
  
 ########################################MENÚ PRINCIPAL##############################################
 regex = QRegExp("[a-z A-Z]+")
@@ -27,7 +29,9 @@ class VentanaPrincipal(QMainWindow):
         self.BotonIngresoDon.clicked.connect(self.AbrirIngresoDon)
         self.BotonConteoCelular.clicked.connect(self.AbrirConteoCelular)
         self.BotonGraficos.clicked.connect(self.AbrirVentanaDatosGraficos)
+        self.BotonVerManual.clicked.connect(self.VerManual)
         self.BotonSalir.clicked.connect(self.Salir)
+        
         
     def asignarControlador(self,c):
         self.__mi_controlador = c
@@ -44,11 +48,6 @@ class VentanaPrincipal(QMainWindow):
         ventanaingreso.show()
         self.hide() 
     
-    def AbrirConteoCelular(self):
-        ventanaingreso = VentanaConteoCelular(self)
-        ventanaingreso.asignarControlador(self.__mi_controlador)
-        ventanaingreso.show()
-        self.hide() 
     
     def AbrirVentanaDatosGraficos(self):
         ventanaingreso = VentanaDatosEstadisticos(self)
@@ -56,6 +55,16 @@ class VentanaPrincipal(QMainWindow):
         ventanaingreso.graficar()
         ventanaingreso.show()
         self.hide() 
+        
+    def AbrirConteoCelular(self):
+        ventanaingreso = VentanaConteoCelular(self)
+        ventanaingreso.asignarControlador(self.__mi_controlador)
+        ventanaingreso.show()
+        self.hide() 
+        
+    def VerManual(self):
+        os.startfile("GUIA_PROYECTO_INFO_2.pdf")
+        self.hide()
 
     def Salir(self):
         self.hide()
@@ -1790,4 +1799,5 @@ class VentanaConteoCelular(QDialog):
             cv2.imshow("Imagen",imagen)            
             cv2.waitKey(0)        
             cv2.destroyAllWindows() 
+    
             

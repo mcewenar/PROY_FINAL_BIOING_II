@@ -555,7 +555,7 @@
     </size>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Hierro en Sangre (mcg/dL&lt;/span&gt;&lt;span style=&quot; font-family:'arial,sans-serif'; font-size:16px; color:#202124; background-color:#ffffff;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Hierro en Sangre (Mg/dL&lt;/span&gt;&lt;span style=&quot; font-family:'arial,sans-serif'; font-size:16px; color:#202124; background-color:#ffffff;&quot;&gt;)&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="Boton_Volver">

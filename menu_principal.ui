@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>621</width>
-    <height>510</height>
+    <height>578</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,8 +34,8 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QPushButton" name="BotonIngresoDon">
+    <item row="6" column="0">
+     <widget class="QPushButton" name="BotonGraficos">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -46,7 +46,7 @@
        <string notr="true">background-color: rgb(245, 245, 245);</string>
       </property>
       <property name="text">
-       <string>Ingresar  al Menú de DONANTES</string>
+       <string>Visualizar Gráficas de los datos actuales del Sistema</string>
       </property>
      </widget>
     </item>
@@ -66,38 +66,6 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="0">
-     <widget class="QPushButton" name="BotonSalir">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(245, 245, 245);</string>
-      </property>
-      <property name="text">
-       <string>SALIR</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QPushButton" name="BotonGraficos">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>40</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(245, 245, 245);</string>
-      </property>
-      <property name="text">
-       <string>Visualizar Gráficas de los datos actuales del Sistema</string>
-      </property>
-     </widget>
-    </item>
     <item row="7" column="0">
      <widget class="QPushButton" name="BotonConteoCelular">
       <property name="minimumSize">
@@ -111,6 +79,45 @@
       </property>
       <property name="text">
        <string>Generar un conteo de célular ( Imagen PNG )</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="BotonIngresoDon">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(245, 245, 245);</string>
+      </property>
+      <property name="text">
+       <string>Ingresar  al Menú de DONANTES</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QPushButton" name="BotonVerManual">
+      <property name="text">
+       <string>Ver manual de usuario (PDF)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QPushButton" name="BotonSalir">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(245, 245, 245);</string>
+      </property>
+      <property name="text">
+       <string>SALIR</string>
       </property>
      </widget>
     </item>

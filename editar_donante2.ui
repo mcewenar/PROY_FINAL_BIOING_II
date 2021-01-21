@@ -241,7 +241,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>EDITAR HIERRO EN SANGRE(mcg/dl): </string>
+    <string>EDITAR HIERRO EN SANGRE(Mg/dL): </string>
    </property>
   </widget>
   <widget class="QLabel" name="label_12">
