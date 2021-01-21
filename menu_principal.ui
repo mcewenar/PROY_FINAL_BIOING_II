@@ -100,6 +100,18 @@
     </item>
     <item row="8" column="0">
      <widget class="QPushButton" name="BotonVerManual">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(245, 245, 245);</string>
+      </property>
       <property name="text">
        <string>Ver manual de usuario (PDF)</string>
       </property>

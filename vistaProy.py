@@ -63,8 +63,8 @@ class VentanaPrincipal(QMainWindow):
         self.hide() 
         
     def VerManual(self):
-        os.startfile("GUIA_PROYECTO_INFO_2.pdf")
-        self.hide()
+        os.startfile("Manual_Usuario_SherGuz_DavidMac_LimEst_DanTam_(pdf).pdf")
+        
 
     def Salir(self):
         self.hide()
